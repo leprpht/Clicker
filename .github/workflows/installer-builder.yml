@@ -21,11 +21,14 @@ jobs:
       - name: Build Windows installer with jlink
         run: ./gradlew.bat jlink
 
+      - name: List build folder contents (Windows)
+        run: dir build /s
+
       - name: Upload Windows installer
         uses: actions/upload-artifact@v4
         with:
           name: windows-installer
-          path: build/image/Clicker-setup.exe  # jlink default output for exe installer
+          path: build/image/Clicker-setup.exe
 
   build-macos:
     runs-on: macos-latest
@@ -42,8 +45,11 @@ jobs:
       - name: Build macOS installer with jlink
         run: ./gradlew jlink
 
+      - name: List build folder contents (macOS)
+        run: ls -lR build
+
       - name: Upload macOS installer
         uses: actions/upload-artifact@v4
         with:
           name: macos-installer
-          path: build/image/Clicker-1.0.dmg  # jlink default dmg output name
+          path: build/image/Clicker-1.0.dmg
