@@ -44,7 +44,7 @@ Clicker comes with installers for ~~Windows~~ and macOS. Installation is straigh
 
 ### Mouse & Keyboard Commands
 
-
+```
 WAIT 2000        # waits 2 seconds
 MOVE 200,300     # moves cursor to X=200, Y=300
 CLICK LEFT       # left mouse click
@@ -52,6 +52,7 @@ PRESS SHIFT      # press the SHIFT key
 RELEASE SHIFT    # release the SHIFT key
 REPEAT 5         # repeat the block 5 times
 END              # marks the end of a repeat block
+```
 
 - Correct button/key names for `CLICK`, `PRESS`, and `RELEASE` are:  
   `LEFT`, `RIGHT`, `MIDDLE`, `A-Z`, `0-9`, `ENTER`, `SHIFT`, `CONTROL`, `ALT`, `PAGE_DOWN`/`PAGE_UP`, `F1-F24`, `ESCAPE`, `HOME`, `END`, `WINDOWS`, `BACK_SPACE`, `DELETE`, `INSERT`, `TAB`, `NUMPAD0-NUMPAD9`
