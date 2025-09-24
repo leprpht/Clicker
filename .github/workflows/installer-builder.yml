@@ -2,7 +2,8 @@ name: Build and Release Installers
 
 on:
   push:
-    branches: [master]
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -20,20 +21,17 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Build installer on Windows
+      - name: Build on Windows
         if: matrix.os == 'windows-latest'
         run: gradlew.bat jlink
         shell: cmd
 
-      - name: Build installer on macOS
+      - name: Build on macOS
         if: matrix.os == 'macos-latest'
         run: ./gradlew jlink
         shell: bash
 
-      - name: List build directory (debug)
-        run: ls -lR build || echo "No build folder"
-
-      - name: Upload Release Asset - Windows installer
+      - name: Upload Windows Installer to GitHub Release
         if: matrix.os == 'windows-latest'
         uses: softprops/action-gh-release@v1
         with:
@@ -41,7 +39,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload Release Asset - macOS installer
+      - name: Upload macOS Installer to GitHub Release
         if: matrix.os == 'macos-latest'
         uses: softprops/action-gh-release@v1
         with:
