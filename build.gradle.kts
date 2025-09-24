@@ -44,10 +44,29 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+val currentOS = org.gradle.internal.os.OperatingSystem.current()
+
 jlink {
-    imageZip.set(layout.buildDirectory.file("/distributions/app-${javafx.platform.classifier}.zip"))
     options.set(listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"))
+
     launcher {
-        name = "app"
+        name = "Clicker"
+
+        jpackage {
+            appVersion = "1.0"
+            vendor = "leprpht"
+
+            installerType = when {
+                currentOS.isMacOsX -> "dmg"
+                currentOS.isWindows -> "exe"
+                else -> throw GradleException("Unsupported OS")
+            }
+
+            icon = when {
+                currentOS.isMacOsX -> "src/main/resources/icon.icns"
+                currentOS.isWindows -> "src/main/resources/icon.ico"
+                else -> null
+            }
+        }
     }
 }
