@@ -53,10 +53,10 @@ RELEASE SHIFT    # release the SHIFT key
 REPEAT 5         # repeat the block 5 times
 END              # marks the end of a repeat block
 
-- Correct button/key names for CLICK, PRESS, and RELEASE are:  
-  LEFT, RIGHT, MIDDLE, A-Z, 0-9, ENTER, SHIFT, CONTROL, ALT, PAGE_DOWN/PAGE_UP, F1-F24, ESCAPE, HOME, END, WINDOWS, BACK_SPACE, DELETE, INSERT, TAB, NUMPAD0-NUMPAD9
+- Correct button/key names for `CLICK`, `PRESS`, and `RELEASE` are:  
+  `LEFT`, `RIGHT`, `MIDDLE`, `A-Z`, `0-9`, `ENTER`, `SHIFT`, `CONTROL`, `ALT`, `PAGE_DOWN`/`PAGE_UP`, `F1-F24`, `ESCAPE`, `HOME`, `END`, `WINDOWS`, `BACK_SPACE`, `DELETE`, `INSERT`, `TAB`, `NUMPAD0-NUMPAD9`
 
-- macOS key mappings differ slightly (e.g., CONTROL → Control ^, ALT → Option ⌥, META → `Command ⌘`).
+- macOS key mappings differ slightly (e.g., `CONTROL` → `Control ^`, `ALT` → `Option ⌥`, `META` → `Command ⌘`).
 
 Tip: Include a short WAIT at the start of scripts to give yourself time to move the mouse if needed.
 
