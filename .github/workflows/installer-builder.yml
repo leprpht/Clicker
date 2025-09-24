@@ -1,4 +1,4 @@
-name: Build Installers and Upload Artifacts
+name: Build and Release Installers
 
 on:
   push:
@@ -20,15 +20,31 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Build installer
-        run: ${{ matrix.os == 'windows-latest' && 'gradlew.bat jlink' || './gradlew jlink' }}
-        shell: ${{ matrix.os == 'windows-latest' && 'cmd' || 'bash' }}
+      - name: Build installer on Windows
+        if: matrix.os == 'windows-latest'
+        run: gradlew.bat jlink
+        shell: cmd
 
-      - name: List build files
+      - name: Build installer on macOS
+        if: matrix.os == 'macos-latest'
+        run: ./gradlew jlink
+        shell: bash
+
+      - name: List build directory (debug)
         run: ls -lR build || echo "No build folder"
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload Release Asset - Windows installer
+        if: matrix.os == 'windows-latest'
+        uses: softprops/action-gh-release@v1
         with:
-          name: ${{ matrix.os }}-installer
-          path: build/image/**
+          files: build/image/Clicker-setup.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Asset - macOS installer
+        if: matrix.os == 'macos-latest'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/image/Clicker-1.0.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
